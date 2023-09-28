@@ -45,9 +45,10 @@ func main() {
 		e.Logger.Fatal(err)
 	}
 
+	authHandler := handlers.NewAuthHandler(db)
 	userHandler := handlers.NewUserHandler(db)
 
-	routes.SetupRoutes(e, userHandler)
+	routes.SetupRoutes(e, userHandler, authHandler)
 
 	e.Start(":8080")
 }

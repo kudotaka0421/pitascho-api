@@ -6,13 +6,13 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func SetupRoutes(e *echo.Echo, userHandler *handlers.UserHandler) {
+func SetupRoutes(e *echo.Echo, userHandler *handlers.UserHandler, authHandler *handlers.AuthHandler) {
 	// e.GET("/healthcheck", healthCheckHandler.HealthCheck)
 	// Auth
 	// [TODO]/api/userは「/api/signup」として切り分けたい
-	// e.POST("/api/login", authHandler.Login)
+	e.POST("/api/login", authHandler.Login)
 	e.POST("/api/user", userHandler.CreateUser)
-	// e.POST("/api/confirm-account/:token", userHandler.ConfirmAccount)
+	e.POST("/api/confirm-account/:token", userHandler.ConfirmAccount)
 
 	// var jwtKey = []byte(os.Getenv("JWT_SECRET_KEY"))
 	// // Configure JWT middleware
